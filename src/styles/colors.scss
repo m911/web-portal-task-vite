@@ -1,0 +1,30 @@
+@mixin bgcolor {
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+}
+
+$textcolor: darkblue;
+$fontsize: 16px;
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #2c3e50;
+  @include bgcolor;
+  color: $textcolor;
+  font-size: $fontsize;
+  height: 100vh;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0.5rem;
+}
+div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
