@@ -2,9 +2,9 @@ import axios from "axios";
 import { cookies, COOKIE_PROPS } from "@/services/cookieService";
 
 export const authService = {
-  isAuthenticated: false,
   BASE_URL: "/index.php/login",
-  login: async function login(credentials: object): Promise<void> {
+  // BASE_URL: "https://api.baubuddy.de/dev/index.php/v1/login",
+  login: async function login(credentials: object): Promise<boolean> {
     try {
       const response = await axios.post(this.BASE_URL, credentials, {
         headers: {
@@ -15,11 +15,11 @@ export const authService = {
       const { token_type, access_token } = response.data.oauth;
       cookies.set(COOKIE_PROPS.TOKEN_TYPE, token_type, 1200);
       cookies.set(COOKIE_PROPS.ACCESS_TOKEN, access_token, 1200);
-      this.isAuthenticated = true;
+      return true;
     } catch (error) {
       console.error(error);
-      this.isAuthenticated = false;
-      // localStorage.setItem("isAuthenticated", "false");
+      console.log("auth failed");
+      return false;
     }
   },
 };

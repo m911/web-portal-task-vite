@@ -6,56 +6,37 @@
       <button class="btn btn-primary" @click="login">Login</button>
     </div>
     <div v-if="isAuthenticated">
-      <button class="btn btn-primary" @click="getData">Load Data</button>
+      <!-- <button class="btn btn-primary" @click="getData">Load Data</button> -->
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+import { useRouter } from "vue-router";
 import { authService } from "@/services/authService";
 import { taskService } from "@/services/taskService";
-import type ModalData from "@/models/ModalData";
-import ModalComponent from "@/components/ModalComponent.vue";
-import { cookies, COOKIE_PROPS } from "@/services/cookieService";
+import { useDataStore } from "@/stores/data";
 
-export default defineComponent({
-  name: "PostList",
-  data: () => {
-    return {
-      isAuthenticated: false,
-      dataNumber: 0,
-      username: "365",
-      password: "1",
-      data: [] as object[],
-      modalActive: true,
-    };
-  },
-  setup(props, ctx) {
-    const modalActive = ref(true);
-    const hasAccessKey: boolean = cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN);
-  },
-  methods: {
-    login(): void {
-      const credentials: object = {
-        username: this.username,
-        password: this.password,
-      };
-      authService.login(credentials);
-      this.isAuthenticated = authService.isAuthenticated;
-      console.log(authService.isAuthenticated);
-    },
-    getData(): void {
-      taskService.getTasks().then((data) => {
-        this.data = data;
-      });
-    },
-  },
-  // components: {
-  //   ModalComponent,
-  // },
-  emits: ["toggleModal"],
-});
+const dataStore = useDataStore();
+const isAuthenticated: boolean = dataStore.isAuthenticated;
+const router = useRouter();
+// let username: string;
+// let password: string;
+let username = "365";
+let password = "1";
+
+function login(): void {
+  const credentials: object = {
+    username: username,
+    password: password,
+  };
+  authService.login(credentials)
+    ? router.replace("/data")
+    : alert(
+        "User not authenticated. Please check username and password and try again."
+      );
+}
+// const getData = (): void => {
+// };
 </script>
-
 <style lang="scss"></style>

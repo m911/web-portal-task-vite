@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
+import { useDataStore } from "@/stores/data";
+const { isAuthenticated } = useDataStore();
 </script>
 
 <template>
@@ -10,6 +12,9 @@ import { RouterLink, RouterView } from "vue-router";
       </a>
       <a class="router-link-exact-active">
         <RouterLink to="/login">Login</RouterLink>
+      </a>
+      <a class="router-link-exact-active" v-if="isAuthenticated">
+        <RouterLink to="/data">Data</RouterLink>
       </a>
     </nav>
     <img

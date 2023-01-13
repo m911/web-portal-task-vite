@@ -13,6 +13,9 @@ export default defineConfig({
     },
   },
   server: {
-    proxy: { "/index.php/login": "https://api.baubuddy.de" },
+    proxy: {
+      "/index.php/login": "https://api.baubuddy.de",
+      "/dev/index.php/v1/tasks/select": "https://api.baubuddy.de",
+    },
   },
 });

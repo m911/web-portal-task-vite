@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import DataTable from "@/components/DataTable.vue";
+</script>
 
-<template>
-  <div></div>
-</template>
+<template><DataTable /></template>
 
 <style lang="scss" scoped></style>
