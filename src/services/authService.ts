@@ -19,7 +19,7 @@ export const authService = {
     } catch (error) {
       console.error(error);
       this.isAuthenticated = false;
-      localStorage.setItem("isAuthenticated", "false");
+      // localStorage.setItem("isAuthenticated", "false");
     }
   },
 };

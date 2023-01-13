@@ -12,5 +12,7 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  proxy: { ket: "https://api.baubuddy.de" },
+  server: {
+    proxy: { "/index.php/login": "https://api.baubuddy.de" },
+  },
 });
