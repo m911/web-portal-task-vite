@@ -24,7 +24,9 @@
       </tbody>
     </table>
   </div>
-  <div v-else>You have not permission to access this page</div>
+  <div v-else>
+    You have not permission to access this page. Please login again.
+  </div>
 </template>
 <script setup lang="ts">
 import { useDataStore } from "@/stores/data";
