@@ -17,7 +17,6 @@
           <td>{{ task.title }}</td>
           <td>{{ task.description }}</td>
           <ColoredCell color="red">
-            <!-- <td class="task" style="{{background-color:`${task.colorCode}`}}"> -->
             {{ task.colorCode }}
           </ColoredCell>
         </tr>
