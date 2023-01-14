@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import DataTable from "@/components/DataTable.vue";
+import SearchBar from "@/components/SearchBar.vue";
 </script>
 
-<template><DataTable /></template>
+<template>
+  <SearchBar />
+  <DataTable />
+</template>
 
 <style lang="scss" scoped></style>
