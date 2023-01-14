@@ -1,12 +1,13 @@
 <template>
   <div class="container">
-    <div class="container">
+    <div class="container" v-if="!isAuthenticated">
       <input required type="text" v-model="username" />
       <input required type="password" v-model="password" />
       <button class="btn btn-primary" @click="login">Login</button>
     </div>
-    <div v-if="isAuthenticated">
-      <!-- <button class="btn btn-primary" @click="getData">Load Data</button> -->
+    <div>
+      <h3>You are already logged in. Go to data page</h3>
+      <button class="btn btn-primary" @click="dataRedirect">Load Data</button>
     </div>
   </div>
 </template>
@@ -39,5 +40,8 @@ function login(): void {
   };
   isLoggedIn();
 }
+const dataRedirect = () => {
+  router.replace("/data");
+};
 </script>
 <style lang="scss"></style>
