@@ -15,10 +15,10 @@ import { taskService } from "@/services/taskService";
 export const useDataStore = defineStore("data", () => {
   const isAuthenticated = ref(cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN));
 
-  const data = taskService.getTasks();
+  // const data = taskService.getTasks();
 
   let localData: Ref<object[]> = ref(
-    (isAuthenticated && data) ?? ([] as object[])
+    taskService.getTasks() ?? ([] as object[])
   );
   let filteredData = ref([] as object[]);
   const setUserData: void = (data: object[]) => (localData = ref(data));

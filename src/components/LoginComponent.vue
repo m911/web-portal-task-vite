@@ -14,10 +14,10 @@
 import { onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { authService } from "@/services/authService";
+import { taskService } from "@/services/taskService";
 import { useDataStore } from "@/stores/data";
 
-const dataStore = useDataStore();
-let isAuthenticated: boolean = dataStore.isAuthenticated;
+let { isAuthenticated } = useDataStore();
 const router = useRouter();
 // let username: string;
 // let password: string;
@@ -34,10 +34,10 @@ function login(): void {
     password: password,
   };
   (async () => {
-    (await authService.login(credentials))
+    (await authService.login(credentials)) && (await taskService.getTasks())
       ? router.replace("/data")
       : alert(
-          "Wrong username or password. Please check username and password and try again."
+          "Authentication failed. Please check username and password and try again."
         );
   })();
 }
