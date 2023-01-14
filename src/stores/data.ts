@@ -1,4 +1,4 @@
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { defineStore } from "pinia";
 import { cookies, COOKIE_PROPS } from "@/services/cookieService";
 import { taskService } from "@/services/taskService";
@@ -17,13 +17,12 @@ export const useDataStore = defineStore("data", () => {
 
   const data = taskService.getTasks();
 
-  let localData = ref(
-    (isAuthenticated &&
-      JSON.parse(localStorage.getItem("localData") || data)) ??
-      ([] as object[])
+  let localData: Ref<object[]> = ref(
+    (isAuthenticated && data) ?? ([] as object[])
   );
   let filteredData = ref([] as object[]);
   const setUserData: void = (data: object[]) => (localData = ref(data));
+  // watch();
   return {
     isAuthenticated,
     localData,

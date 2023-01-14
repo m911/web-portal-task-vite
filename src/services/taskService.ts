@@ -7,6 +7,9 @@ export const taskService = (function () {
   return { getTasks };
 
   function getTasks(): object[] {
+    if (!cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN)) {
+      return;
+    }
     let data: object[] = [];
     async function getPromise(): Promise<void> {
       const BASE_URL = "/dev/index.php/v1/tasks/select";
@@ -28,7 +31,7 @@ export const taskService = (function () {
         console.error(error);
       }
     }
-    getPromise();
+    // getPromise();
     return data;
   }
 })();

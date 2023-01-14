@@ -13,8 +13,13 @@ export const authService = {
         },
       });
       const { token_type, access_token } = response.data.oauth;
-      cookies.set(COOKIE_PROPS.TOKEN_TYPE, token_type, 1200);
-      cookies.set(COOKIE_PROPS.ACCESS_TOKEN, access_token, 1200);
+
+      cookies.set(COOKIE_PROPS.TOKEN_TYPE, token_type);
+      cookies.set(
+        COOKIE_PROPS.ACCESS_TOKEN,
+        access_token,
+        new Date(Date.now() + 1200 * 60 * 60)
+      );
       return true;
     } catch (error) {
       console.error(error);
