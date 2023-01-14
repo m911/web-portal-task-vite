@@ -16,7 +16,7 @@
           <td>{{ task.task }}</td>
           <td>{{ task.title }}</td>
           <td>{{ task.description }}</td>
-          <ColoredCell color="red">
+          <ColoredCell :color="task.colorCode">
             {{ task.colorCode }}
           </ColoredCell>
         </tr>
