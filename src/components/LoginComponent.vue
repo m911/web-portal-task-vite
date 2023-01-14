@@ -11,10 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { authService } from "@/services/authService";
-import { taskService } from "@/services/taskService";
 import { useDataStore } from "@/stores/data";
 
 const dataStore = useDataStore();
@@ -26,7 +25,7 @@ let username = "365";
 let password = "1";
 
 onBeforeMount(() => {
-  isAuthenticated ? (isAuthenticated = ref(false)) : isAuthenticated;
+  isAuthenticated ? (isAuthenticated = false) : isAuthenticated;
 });
 
 function login(): void {
