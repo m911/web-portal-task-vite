@@ -24,6 +24,7 @@ const filterData2 = (input) => {
 <template>
   <div>
     <input
+      :oninput="filterData"
       type="text"
       name="search"
       id="searchField"
