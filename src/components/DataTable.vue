@@ -16,10 +16,10 @@
           <td>{{ task.task }}</td>
           <td>{{ task.title }}</td>
           <td>{{ task.description }}</td>
-          <td class="task" style="{{background-color:#1df70e}}">
+          <ColoredCell color="red">
             <!-- <td class="task" style="{{background-color:`${task.colorCode}`}}"> -->
             {{ task.colorCode }}
-          </td>
+          </ColoredCell>
         </tr>
       </tbody>
     </table>
@@ -31,9 +31,11 @@
 <script setup lang="ts">
 import { useDataStore } from "@/stores/data";
 import { taskService } from "@/services/taskService";
+import ColoredCell from "./ColoredCell.vue";
 import { watch } from "vue";
 
 let tasknumber = 0;
+let color = "green";
 const { setUserData, isAuthenticated, localData } = useDataStore();
 const data = taskService.getTasks();
 setUserData(data)<void>;
