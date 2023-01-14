@@ -15,7 +15,7 @@ checkForCookie();
 export const useDataStore = defineStore("data", () => {
   let successResponse: boolean;
   let localData: object[] =
-    (checkForCookie() && JSON.parse(localStorage.getItem("localData"))) ??
+    (isAuthenticated && JSON.parse(localStorage.getItem("localData"))) ??
     ([] as object[]);
   const setUserData: void = (data: object[]) => (localData = data);
 
