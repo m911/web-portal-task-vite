@@ -17,9 +17,9 @@ export const useDataStore = defineStore("data", () => {
 
   const data = taskService.getTasks();
 
-  let localData: object[] = ref(
-    ((isAuthenticated && JSON.parse(localStorage.getItem("localData"))) ||
-      data) ??
+  let localData = ref(
+    (isAuthenticated &&
+      JSON.parse(localStorage.getItem("localData") || data)) ??
       ([] as object[])
   );
   let filteredData = ref([] as object[]);
