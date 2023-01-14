@@ -30,13 +30,14 @@ function login(): void {
     username: username,
     password: password,
   };
-  authService.login(credentials)
-    ? router.replace("/data")
-    : alert(
-        "User not authenticated. Please check username and password and try again."
-      );
+  const isLoggedIn = async () => {
+    (await authService.login(credentials))
+      ? router.replace("/data")
+      : alert(
+          "User not authenticated. Please check username and password and try again."
+        );
+  };
+  isLoggedIn();
 }
-// const getData = (): void => {
-// };
 </script>
 <style lang="scss"></style>

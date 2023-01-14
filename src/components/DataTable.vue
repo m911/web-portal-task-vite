@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div v-if="isAuthenticated" v-bind="isAuthenticated" class="container">
     <table class="table table-bordered border-primary">
       <thead>
         <tr>
@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="table-row" v-for="task in tasks" :key="task.task">
+        <tr class="table-row" v-for="task in localData" :key="task.task">
           <td>{{ tasknumber++ }}</td>
           <td>{{ task.task }}</td>
           <td>{{ task.title }}</td>
@@ -24,16 +24,17 @@
       </tbody>
     </table>
   </div>
+  <div v-else>You have not permission to access this page</div>
 </template>
 <script setup lang="ts">
 import { useDataStore } from "@/stores/data";
 import { taskService } from "@/services/taskService";
+import { watch } from "vue";
 
 let tasknumber = 0;
-const dataStore = useDataStore();
+const { setUserData, isAuthenticated, localData } = useDataStore();
 const data = taskService.getTasks();
-dataStore.setUserData(data)<void>;
-const tasks = useDataStore().localData;
+setUserData(data)<void>;
 </script>
 
 <style lang="sass"></style>

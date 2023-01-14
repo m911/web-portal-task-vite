@@ -1,19 +1,22 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { cookies, COOKIE_PROPS } from "@/services/cookieService";
-import { onMounted } from "vue";
 
 let isAuthenticated: boolean;
 
-onMounted(() => {
+const checkForCookie = () => {
   cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN)
     ? (isAuthenticated = true)
     : (isAuthenticated = false);
-});
+  return isAuthenticated;
+};
+checkForCookie();
+
 export const useDataStore = defineStore("data", () => {
   let successResponse: boolean;
   let localData: object[] =
-    JSON.parse(localStorage.getItem("localData")) ?? ([] as object[]);
+    (checkForCookie() && JSON.parse(localStorage.getItem("localData"))) ??
+    ([] as object[]);
   const setUserData: void = (data: object[]) => (localData = data);
 
   return {
