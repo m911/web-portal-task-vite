@@ -21,9 +21,6 @@
       </tbody>
     </table>
   </div>
-  <div v-else>
-    You have not permission to access this page. Please login again.
-  </div>
 </template>
 <script setup lang="ts">
 import { useDataStore } from "@/stores/data";
@@ -34,8 +31,6 @@ import { watch } from "vue";
 let tasknumber = 0;
 let color = "green";
 const { setUserData, isAuthenticated, localData } = useDataStore();
-const data = taskService.getTasks();
-setUserData(data)<void>;
 </script>
 
 <style lang="sass"></style>

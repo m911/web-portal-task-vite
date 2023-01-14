@@ -14,7 +14,7 @@ const filterData = (event: any): void => {
       return JSON.stringify(item).toLowerCase().includes(query.toLowerCase());
     });
   }
-  console.table(filterData);
+  console.table(filteredData);
 };
 const filterData2 = (input) => {
   console.log(input.target.value);

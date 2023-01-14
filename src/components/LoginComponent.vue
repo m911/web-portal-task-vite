@@ -5,7 +5,7 @@
       <input required type="password" v-model="password" />
       <button class="btn btn-primary" @click="login">Login</button>
     </div>
-    <div>
+    <div v-else>
       <h3>You are already logged in. Go to data page</h3>
       <button class="btn btn-primary" @click="dataRedirect">Load Data</button>
     </div>
