@@ -23,7 +23,8 @@ export const taskService = {
           headers,
         });
         data = response.data;
-        useDataStore().setUserData(response.data);
+        useDataStore().localData = data;
+        console.log(useDataStore().localData);
         localStorage.setItem("localData", JSON.stringify(data));
       } catch (error: any) {
         console.error(error);

@@ -15,7 +15,7 @@ import ColoredCell from "./ColoredCell.vue";
 import { ref } from "vue";
 
 let tasknumber = 0;
-const { isAuthenticated, localData, filteredData } = useDataStore();
+const { localData, filteredData } = useDataStore();
 // let localData2 = ref(filteredData.length == 0 ? localData : filteredData);
 </script>
 
