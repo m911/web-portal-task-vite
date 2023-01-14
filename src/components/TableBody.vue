@@ -1,5 +1,5 @@
 <template>
-  <tbody class="table-row" v-for="task in localData" :key="task.task">
+  <tbody class="table-row" v-for="task in localData2" :key="task.task">
     <tr>
       <td>{{ tasknumber++ }}</td>
       <td>{{ task.task }}</td>
@@ -12,11 +12,10 @@
 <script setup lang="ts">
 import { useDataStore } from "@/stores/data";
 import ColoredCell from "./ColoredCell.vue";
-import { ref } from "vue";
 
 let tasknumber = 0;
 const { localData, filteredData } = useDataStore();
-// let localData2 = ref(filteredData.length == 0 ? localData : filteredData);
+let localData2 = filteredData.length == 0 ? localData : filteredData;
 </script>
 
 <style lang="sass"></style>
