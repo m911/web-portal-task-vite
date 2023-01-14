@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
-const props = defineProps({ color: String });
-console.log(props.color);
-let color = props.color;
+import { defineProps, ref } from "vue";
+
+const props = defineProps({
+  task: {
+    type: Object,
+    required: true,
+  },
+});
 const style = {
-  "background-color": `${color}`,
+  "background-color": `${props.task.colorCode}`,
 };
 </script>
 
 <template>
-  <td :style="style">{{ children }}</td>
+  <td :style="style">{{ task.colorCode }}</td>
 </template>
 
 <style lang="scss" scoped></style>
