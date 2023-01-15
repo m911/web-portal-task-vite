@@ -11,11 +11,9 @@ export const useDataStore = defineStore({
     isAuthenticated: false,
     isLoading: false,
     modalData: {
-      modalActive: true,
       title: "",
-      // data?: "",
-      data: "My name is Mitko",
-      // extraButton: object,
+      data: "",
+      saveButtonOn: false,
     },
     filteredData: [] as object[],
     query: "",

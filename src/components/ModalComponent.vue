@@ -7,7 +7,7 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title fs-5" id="exampleModalLabel">
-            {{ modalData?.modalActive.title }}
+            {{ dataStore?.modalData.title }}
           </h4>
           <button
             type="button"
@@ -19,14 +19,20 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-          <p>This is the modal body</p>
-          <slot></slot>
+          <slot>
+            {{ dataStore?.modalData.data }}
+          </slot>
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
           <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-success">Save changes</button>
+          <button
+            class="btn btn-success"
+            v-if="dataStore.modalData.saveButtonOn"
+          >
+            Save changes
+          </button>
         </div>
       </div>
     </div>
