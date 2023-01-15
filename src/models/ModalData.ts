@@ -1,9 +1,10 @@
+import { Modal } from "bootstrap";
+
 export interface ModalData {
   modalActive?: boolean;
   title?: "";
-  // data?: "";
-  data?: "My name is Mitko";
-  extraButton: object;
+  data?: "";
+  optionalButton?: object;
 }
 
 export const data2 = {
@@ -11,3 +12,7 @@ export const data2 = {
   title: "",
   data: "",
 };
+
+export const myModal = new Modal("#exampleModal", {
+  keyboard: false,
+});

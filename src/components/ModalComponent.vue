@@ -27,13 +27,8 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <button
-            class="btn btn-success"
-            v-if="dataStore.modalData.saveButtonOn"
-            :on-click="dataStore.modalData.saveButtoCallBack"
-          >
-            Save changes
-          </button>
+          <!-- Optional sybmit button vie props with data binding -->
+          {{ dataStore?.modalData.optionalButton }}
         </div>
       </div>
     </div>
@@ -43,7 +38,6 @@
 
 <script lang="ts" setup>
 import { useDataStore } from "@/stores/data";
-import { Modal } from "bootstrap";
 const dataStore = useDataStore();
 </script>
 

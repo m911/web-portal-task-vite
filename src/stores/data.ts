@@ -1,9 +1,5 @@
 import { watch } from "vue";
 import { defineStore } from "pinia";
-import { cookies, COOKIE_PROPS } from "@/services/cookieService";
-import { taskService } from "@/services/taskService";
-import { authService } from "@/services/authService";
-// import { ModalData } from "@/models/ModalData";
 
 export const useDataStore = defineStore({
   id: "data",
@@ -14,7 +10,7 @@ export const useDataStore = defineStore({
       title: "",
       data: "",
       saveButtonOn: true,
-      saveButtoCallBack: Function,
+      optionalButton: {},
     },
     filteredData: [] as object[],
     query: "",
@@ -42,19 +38,11 @@ export const useDataStore = defineStore({
   },
 });
 
-watch(
-  useDataStore.state,
-  (state) => {
-    // persist the whole state to the local storage whenever it changes
-    localStorage.setItem("piniaState", JSON.stringify(state));
-  },
-  { deep: true }
-);
-
-interface ModalData {
-  modalActive?: boolean;
-  title?: "";
-  // data?: "";
-  data?: "My name is Mitko";
-  extraButton: object;
-}
+// watch(
+//   useDataStore.state,
+//   (state) => {
+//     // persist the whole state to the local storage whenever it changes
+//     localStorage.setItem("piniaState", JSON.stringify(state));
+//   },
+//   { deep: true }
+// );
