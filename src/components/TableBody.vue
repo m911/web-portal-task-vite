@@ -1,9 +1,5 @@
 <template>
-  <tbody
-    class="table-row"
-    v-for="task in dataStore.showFilter"
-    :key="task.task"
-  >
+  <tbody class="table-row" v-for="task in dataStore.showFiler" :key="task.task">
     <tr>
       <td>{{ tasknumber++ }}</td>
       <td>{{ task.task }}</td>
@@ -22,11 +18,8 @@ import { taskService } from "@/services/taskService";
 
 let tasknumber = 0;
 let dataStore = useDataStore();
-let localData2 =
-  dataStore.filteredData.length == 0
-    ? dataStore.localData
-    : dataStore.filteredData;
-
+let tabledata = dataStore.showFiler;
+console.table(tabledata);
 onBeforeMount(() => {
   taskService.getTasks();
 });

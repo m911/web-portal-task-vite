@@ -1,13 +1,15 @@
-import { toRef } from "vue";
+import { watch } from "vue";
 import { defineStore } from "pinia";
 import { cookies, COOKIE_PROPS } from "@/services/cookieService";
 import { taskService } from "@/services/taskService";
+import { authService } from "@/services/authService";
 
 export const useDataStore = defineStore({
   id: "data",
   state: () => ({
-    isAuthenticated: cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN),
+    isAuthenticated: false,
     // isAuthenticated: false,
+    // localData: [] as object[],
     localData: [] as object[],
     filteredData: [] as object[],
     query: "",
@@ -30,3 +32,12 @@ export const useDataStore = defineStore({
     },
   },
 });
+
+watch(
+  useDataStore.state,
+  (state) => {
+    // persist the whole state to the local storage whenever it changes
+    localStorage.setItem("piniaState", JSON.stringify(state));
+  },
+  { deep: true }
+);

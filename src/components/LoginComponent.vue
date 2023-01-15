@@ -9,7 +9,7 @@
     <button class="btn btn-primary" @click="login">Login</button>
   </div>
   <div v-else>
-    <h3>You are already logged in. Go to data page</h3>
+    <h3>Go to data page</h3>
     <button class="btn btn-primary" @click="dataRedirect">Load Data</button>
   </div>
 </template>
@@ -34,15 +34,16 @@ function login(): void {
     password: password,
   };
   (async () => {
-    (await authService.login(credentials))
-      ? router.replace("/data")
-      : alert(
-          "Authentication failed. Please check username and password and try again."
-        );
+    if (await authService.login(credentials)) {
+      await taskService.getTasks();
+      router.replace("/data");
+    } else {
+      alert("Login failed. Please check username and password and try again.");
+    }
   })();
 }
-const dataRedirect = () => {
+function dataRedirect() {
   router.replace("/data");
-};
+}
 </script>
 <style lang="scss"></style>

@@ -13,22 +13,17 @@ const filterData = (event: any): void => {
       return JSON.stringify(item).toLowerCase().includes(query.toLowerCase());
     });
     dataStore.filteredData = newarray;
+    console.clear();
+    console.table(newarray);
+    console.table(dataStore.filteredData);
   }
-  //   console.clear();
-  //   console.table(filteredData);
-  console.table(useDataStore.filteredData);
-};
-const showdata = () => {
-  // filteredData = [{ dfd: 1, dfsdfdfd: 2, dfdf: 3 }];
-  // dataStore.query = ref("mitko2");
-  console.log(dataStore.query);
 };
 </script>
 
 <template>
   <div>
     <input
-      :oninput="showdata"
+      :oninput="filterData"
       autocomplete="off"
       type="text"
       name="search"

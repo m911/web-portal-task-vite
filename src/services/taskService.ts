@@ -3,13 +3,14 @@ import { cookies, COOKIE_PROPS } from "./cookieService";
 import { useDataStore } from "@/stores/data";
 
 export const taskService = {
-  getTasks() {
+  getTasks(): boolean {
     const dataStore = useDataStore();
+    let getTaskSuccessfull: boolean;
     if (!cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN)) {
       dataStore.isAuthenticated = false;
-      return;
+      return false;
     } else {
-      (async function getPromise(): Promise<void> {
+      (async function getPromise(): Promise<boolean> {
         try {
           const BASE_URL = "/dev/index.php/v1/tasks/select";
           const tokenType = cookies.get("token_type");
@@ -23,8 +24,11 @@ export const taskService = {
           });
           dataStore.localData = response.data;
           sessionStorage.setItem("localData", JSON.stringify(response.data));
+          return true;
         } catch (error: any) {
           console.error(`${error} ${error.message}`);
+          dataStore.isAuthenticated = false;
+          return false;
         }
       })();
     }

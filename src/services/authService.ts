@@ -30,7 +30,7 @@ export const authService = {
     } catch (error) {
       console.error(`Error ${error} ${error.message}`);
       const dataStore = useDataStore();
-      // dataStore.isAuthenticated = false;
+      dataStore.isAuthenticated = false;
       return false;
     }
   },
