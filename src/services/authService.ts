@@ -25,38 +25,20 @@ export const authService = {
       );
       localCredentials = credentials;
       dataStore.isAuthenticated = true;
-      // dataStore.changeAuthorization();
+      refreshTokenTimeout();
       return true;
     } catch (error) {
       console.error(`Error ${error} ${error.message}`);
       const dataStore = useDataStore();
-      dataStore.isAuthenticated = false;
-      // dataStore.changeAuthorization();
+      // dataStore.isAuthenticated = false;
       return false;
     }
   },
-  // getToken: async function getPromise(): Promise<void> {
-  //   try {
-  //     const tokenType = cookies.get("token_type");
-  //     const refreshToken = cookies.get(COOKIE_PROPS.REFRESH_TOKEN);
-  //     const headers = {
-  //       Authorization: `${tokenType} ${refreshToken}`,
-  //       "Content-Type": "application/json",
-  //     };
-  //     const response = await axios.post(TASK_URL, {
-  //       headers,
-  //     });
-  //     // localStorage.setItem("localData", JSON.stringify(data));
-  //   } catch (error: any) {
-  //     throw new Error("Error: " + error.message);
-  //     router.replace("/login");
-  //     console.error(error);
-  //   }
-  // },
 };
 
-(() => {
+const refreshTokenTimeout = () => {
   setTimeout(() => {
-    authService.login(localCredentials);
-  }, 1200 * 60 * 60 - 40);
-})();
+    // authService.login(localCredentials);
+    console.log("timeout function in auth service is run");
+  }, 1200);
+};

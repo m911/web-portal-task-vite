@@ -6,8 +6,8 @@ import { taskService } from "@/services/taskService";
 export const useDataStore = defineStore({
   id: "data",
   state: () => ({
-    // datastore.isAuthenticated: cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN),
-    isAuthenticated: false,
+    isAuthenticated: cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN),
+    // isAuthenticated: false,
     localData: [] as object[],
     filteredData: [] as object[],
     query: "",
@@ -22,10 +22,11 @@ export const useDataStore = defineStore({
       this.isAuthenticated = newValue;
     },
   },
-  // getters: {
-  //   changeAuthorization: (state) => {
-  //     const newValue = !state.isAuthenticated;
-  //     state.isAuthenticated = newValue;
-  //   },
-  // },
+  getters: {
+    showFilter: (state) => {
+      return state.filteredData.lenght > 0
+        ? state.filteredData
+        : state.localData;
+    },
+  },
 });

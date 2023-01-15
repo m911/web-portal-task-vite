@@ -28,10 +28,6 @@ const router = useRouter();
 let username = "365";
 let password = "1";
 
-// onBeforeMount(() => {
-//   datastore.isAuthenticated ? (datastore.isAuthenticated = false) : datastore.isAuthenticated;
-// });
-
 function login(): void {
   const credentials: object = {
     username: username,

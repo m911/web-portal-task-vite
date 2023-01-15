@@ -1,5 +1,9 @@
 <template>
-  <tbody class="table-row" v-for="task in localData2" :key="task.task">
+  <tbody
+    class="table-row"
+    v-for="task in dataStore.showFilter"
+    :key="task.task"
+  >
     <tr>
       <td>{{ tasknumber++ }}</td>
       <td>{{ task.task }}</td>
@@ -12,6 +16,8 @@
 <script setup lang="ts">
 import { useDataStore } from "@/stores/data";
 import ColoredCell from "./ColoredCell.vue";
+import { onBeforeMount } from "vue";
+import { taskService } from "@/services/taskService";
 // import Itask from "@/utils/ITask";
 
 let tasknumber = 0;
@@ -20,6 +26,10 @@ let localData2 =
   dataStore.filteredData.length == 0
     ? dataStore.localData
     : dataStore.filteredData;
+
+onBeforeMount(() => {
+  taskService.getTasks();
+});
 </script>
 
 <style lang="sass"></style>

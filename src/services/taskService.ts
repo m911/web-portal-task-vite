@@ -21,8 +21,10 @@ export const taskService = {
           const response = await axios.get<object[]>(BASE_URL, {
             headers,
           });
-          dataStore.setLocalData(response.data);
+          dataStore.localData = response.data;
           localStorage.setItem("localData", JSON.stringify(response.data));
+          console.log(Array.isArray(dataStore.localData));
+          console.log(dataStore.localData);
         } catch (error: any) {
           console.error(error);
           // error.message<string>.includes("";

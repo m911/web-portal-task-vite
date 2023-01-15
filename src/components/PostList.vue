@@ -42,8 +42,6 @@ export default defineComponent({
         password: this.password,
       };
       authService.login(credentials);
-      this.datastore.isAuthenticated = authService.datastore.isAuthenticated;
-      console.log(authService.datastore.isAuthenticated);
     },
     getData(): void {
       taskService.getTasks().then((data) => {
