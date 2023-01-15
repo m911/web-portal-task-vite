@@ -12,13 +12,13 @@ const filterData = (event: any): void => {
       return JSON.stringify(item).toLowerCase().includes(query.toLowerCase());
     });
     filteredData = newarray;
-    // filteredData = [{ dfd: 1, dfsdfdfd: 2, dfdf: 3 }];
   }
   //   console.clear();
   //   console.table(filteredData);
   console.table(useDataStore().filteredData);
 };
 const showdata = () => {
+  // filteredData = [{ dfd: 1, dfsdfdfd: 2, dfdf: 3 }];
   console.log(query);
 };
 </script>

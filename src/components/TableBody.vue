@@ -15,8 +15,11 @@ import ColoredCell from "./ColoredCell.vue";
 // import Itask from "@/utils/ITask";
 
 let tasknumber = 0;
-const { localData, filteredData } = useDataStore();
-let localData2 = filteredData.length == 0 ? localData : filteredData;
+let dataStore = useDataStore();
+let localData2 =
+  dataStore.filteredData.length == 0
+    ? dataStore.localData
+    : dataStore.filteredData;
 </script>
 
 <style lang="sass"></style>

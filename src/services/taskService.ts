@@ -4,13 +4,12 @@ import { useDataStore } from "@/stores/data";
 import { useRouter } from "vue-router";
 
 export const taskService = {
-  getTasks(): object[] {
-    let { localData } = useDataStore();
+  getTasks() {
+    const dataStore = useDataStore();
     if (!cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN)) {
       return;
     } else {
-      let data: object[] = [];
-      async function getPromise(): Promise<void> {
+      (async function getPromise(): Promise<void> {
         try {
           const BASE_URL = "/dev/index.php/v1/tasks/select";
           const tokenType = cookies.get("token_type");
@@ -22,18 +21,14 @@ export const taskService = {
           const response = await axios.get<object[]>(BASE_URL, {
             headers,
           });
-          data = response.data;
-          localData = data;
-          console.log(localData);
-          localStorage.setItem("localData", JSON.stringify(data));
+          dataStore.setLocalData(response.data);
+          localStorage.setItem("localData", JSON.stringify(response.data));
         } catch (error: any) {
           console.error(error);
           // error.message<string>.includes("";
           useRouter().replace("/login");
         }
-      }
-      getPromise();
-      return data;
+      })();
     }
   },
 };

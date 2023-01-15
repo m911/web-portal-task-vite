@@ -1,5 +1,7 @@
 import axios from "axios";
 import { cookies, COOKIE_PROPS } from "@/services/cookieService";
+import { useDataStore } from "@/stores/data";
+import { ref } from "vue";
 
 let localCredentials: object = {};
 export const authService = {
@@ -15,6 +17,7 @@ export const authService = {
         },
       });
       const { token_type, access_token } = response.data.oauth;
+      const dataStore = useDataStore();
       cookies.set(COOKIE_PROPS.TOKEN_TYPE, token_type);
       cookies.set(
         COOKIE_PROPS.ACCESS_TOKEN,
@@ -22,10 +25,13 @@ export const authService = {
         new Date(Date.now() + 1200 * 60 * 60)
       );
       localCredentials = credentials;
+      dataStore.isAuthenticated = ref(true);
+      // dataStore.changeAuthorization();
       return true;
     } catch (error) {
-      console.error(error);
-      console.log("auth failed");
+      console.error(`Error ${error} ${error.message}`);
+      dataStore.isAuthenticated = ref(false);
+      // dataStore.changeAuthorization();
       return false;
     }
   },
