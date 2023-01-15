@@ -1,4 +1,4 @@
-export default interface ModalData {
+export interface ModalData {
   modalActive?: boolean;
   title?: "";
   // data?: "";

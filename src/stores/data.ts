@@ -3,15 +3,20 @@ import { defineStore } from "pinia";
 import { cookies, COOKIE_PROPS } from "@/services/cookieService";
 import { taskService } from "@/services/taskService";
 import { authService } from "@/services/authService";
-import ModalData from "@/models/ModalData";
+// import { ModalData } from "@/models/ModalData";
 
 export const useDataStore = defineStore({
   id: "data",
   state: () => ({
     isAuthenticated: false,
     isLoading: false,
-    modalActive: false,
-    ModalData: ModalData,
+    modalData: {
+      modalActive: true,
+      title: "",
+      // data?: "",
+      data: "My name is Mitko",
+      // extraButton: object,
+    },
     filteredData: [] as object[],
     query: "",
   }),
@@ -25,8 +30,8 @@ export const useDataStore = defineStore({
       this.isAuthenticated = newValue;
     },
     toggleModal: () => {
-      const newValue = !this.modalActive;
-      this.modalActive = newValue;
+      const newValue = !this.modalData.modalActive;
+      this.modalData.modalActive = newValue;
     },
   },
   getters: {
@@ -46,3 +51,11 @@ watch(
   },
   { deep: true }
 );
+
+interface ModalData {
+  modalActive?: boolean;
+  title?: "";
+  // data?: "";
+  data?: "My name is Mitko";
+  extraButton: object;
+}

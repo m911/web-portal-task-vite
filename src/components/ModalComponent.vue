@@ -1,42 +1,43 @@
 <template>
-  <Teleport to="body">
-    <div
-      v-show="useDataStore.modalActive"
-      class="modal fade"
-      id="myModal"
-      @click="toggleModal"
-    >
-      <div class="modal-dialog">
-        <div v-show="modalActive" class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">{{ title }}</h4>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
+  <!-- <Teleport to="body"> -->
+  <div class="modal fade" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <!-- Check if attributes bellow can be removed -->
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title fs-5" id="exampleModalLabel">
+            {{ modalData?.modalActive.title }}
+          </h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
 
-          <!-- Modal body -->
-          <div class="modal-body">
-            <p>This is the modal body</p>
-            <slot></slot>
-          </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <p>This is the modal body</p>
+          <slot></slot>
+        </div>
 
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <!-- <button v-if="extraButton" class="btn btn-success"></button> -->
-            <!-- <button @click="toggleModal" class="btn btn-danger">Close</button> -->
-          </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-success">Save changes</button>
         </div>
       </div>
     </div>
-  </Teleport>
+  </div>
+  <!-- </Teleport> -->
 </template>
 
 <script lang="ts" setup>
 import { useDataStore } from "@/stores/data";
+import { Modal } from "bootstrap";
+const dataStore = useDataStore();
 </script>
 
 <style lang="scss" scoped></style>
