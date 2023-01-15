@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
 import { useDataStore } from "@/stores/data";
 
-let { localData, filteredData } = useDataStore();
-let query2 = ref("");
-
+let { query } = useDataStore();
 const filterData = (event: any): void => {
   const query: string = event.target.value;
   if (query.length == 0) {
-    filteredData = [];
+    dataStore.filteredData = [];
     return;
   } else {
     let newarray: object[] = localData.filter((item) => {
@@ -21,19 +18,22 @@ const filterData = (event: any): void => {
   //   console.table(filteredData);
   console.table(useDataStore().filteredData);
 };
+const showdata = () => {
+  console.log(query);
+};
 </script>
 
 <template>
   <div>
     <input
-      :oninput="filterData"
+      :oninput="showdata"
       type="text"
       name="search"
       id="searchField"
       placeholder="Type something to search"
-      v-model="query2"
+      v-model="query"
     />
-    {{ query2 }}
+    {{ query }}
   </div>
 </template>
 

@@ -24,9 +24,9 @@ const router = useRouter();
 let username = "365";
 let password = "1";
 
-onBeforeMount(() => {
-  isAuthenticated ? (isAuthenticated = false) : isAuthenticated;
-});
+// onBeforeMount(() => {
+//   isAuthenticated ? (isAuthenticated = false) : isAuthenticated;
+// });
 
 function login(): void {
   const credentials: object = {

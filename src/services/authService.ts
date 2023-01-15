@@ -21,7 +21,6 @@ export const authService = {
         access_token,
         new Date(Date.now() + 1200 * 60 * 60)
       );
-
       localCredentials = credentials;
       return true;
     } catch (error) {

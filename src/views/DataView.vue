@@ -6,14 +6,14 @@ import { useDataStore } from "@/stores/data";
 import { taskService } from "@/services/taskService";
 let { isAuthenticated } = useDataStore();
 
-const getData = () => {
-  taskService.getTasks();
+async function getData() {
+  await taskService.getTasks();
   console.table(useDataStore().localData);
-};
+}
 </script>
 
 <template>
-  <button :on-click="getData">Get data</button>
+  <button :onclick="getData">Get data</button>
   <div v-if="isAuthenticated" v-bind="isAuthenticated" class="container">
     <SearchBar />
     <table class="table table-bordered border-primary">
