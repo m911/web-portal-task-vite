@@ -12,6 +12,7 @@ export const taskService = {
     } else {
       (async function getPromise(): Promise<boolean> {
         try {
+          useDataStore.isLoading = true;
           const BASE_URL = "/dev/index.php/v1/tasks/select";
           const tokenType = cookies.get("token_type");
           const accessToken = cookies.get("access_token");
@@ -24,6 +25,7 @@ export const taskService = {
           });
           dataStore.localData = response.data;
           sessionStorage.setItem("localData", JSON.stringify(response.data));
+          useDataStore.isLoading = false;
           return true;
         } catch (error: any) {
           console.error(`${error} ${error.message}`);

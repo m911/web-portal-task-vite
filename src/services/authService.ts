@@ -9,6 +9,7 @@ export const authService = {
   // BASE_URL: "https://api.baubuddy.de/dev/index.php/v1/login",
   login: async function login(credentials: object): Promise<boolean> {
     try {
+      useDataStore.isLoading = true;
       const response = await axios.post(this.BASE_URL, credentials, {
         headers: {
           "Content-Type": "application/json",
@@ -26,6 +27,7 @@ export const authService = {
       localCredentials = credentials;
       dataStore.isAuthenticated = true;
       refreshTokenTimeout();
+      useDataStore.isLoading = false;
       return true;
     } catch (error) {
       console.error(`Error ${error} ${error.message}`);

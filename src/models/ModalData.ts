@@ -1,7 +1,8 @@
 export default interface ModalData {
   modalActive?: boolean;
   title?: "";
-  data?: "";
+  // data?: "";
+  data?: "My name is Mitko";
   extraButton: object;
 }
 

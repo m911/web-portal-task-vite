@@ -36,7 +36,7 @@ function login(): void {
   (async () => {
     if (await authService.login(credentials)) {
       await taskService.getTasks();
-      router.replace("/data");
+      router.replace("/loginSucess");
     } else {
       alert("Login failed. Please check username and password and try again.");
     }
