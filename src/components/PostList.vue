@@ -5,7 +5,7 @@
       <input required type="password" v-model="password" />
       <button class="btn btn-primary" @click="login">Login</button>
     </div>
-    <div v-if="isAuthenticated">
+    <div v-if="datastore.isAuthenticated">
       <button class="btn btn-primary" @click="getData">Load Data</button>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default defineComponent({
   name: "PostList",
   data: () => {
     return {
-      isAuthenticated: false,
+      datastore.isAuthenticated: false,
       dataNumber: 0,
       username: "365",
       password: "1",
@@ -42,8 +42,8 @@ export default defineComponent({
         password: this.password,
       };
       authService.login(credentials);
-      this.isAuthenticated = authService.isAuthenticated;
-      console.log(authService.isAuthenticated);
+      this.datastore.isAuthenticated = authService.datastore.isAuthenticated;
+      console.log(authService.datastore.isAuthenticated);
     },
     getData(): void {
       taskService.getTasks().then((data) => {

@@ -4,23 +4,27 @@ import TableHeader from "@/components/TableHeader.vue";
 import TableBody from "@/components/TableBody.vue";
 import { useDataStore } from "@/stores/data";
 import { taskService } from "@/services/taskService";
-let { isAuthenticated, localData } = useDataStore();
+let { datastore, localData } = useDataStore();
 
 async function getData() {
   await taskService.getTasks();
   console.table(localData);
 }
 const showAuth = () => {
-  console.log(isAuthenticated);
+  console.log(datastore.isAuthenticated);
   console.table(localData);
 };
 </script>
 
 <template>
-  {{ isAuthenticated }}
+  {{ datastore.isAuthenticated }}
   <button :onclick="getData">Get data</button>
   <button :onclick="showAuth">Show authorization</button>
-  <div v-if="isAuthenticated" v-bind="isAuthenticated" class="container">
+  <div
+    v-if="datastore.isAuthenticated"
+    v-bind="datastore.isAuthenticated"
+    class="container"
+  >
     <SearchBar />
     <table class="table table-bordered border-primary">
       <TableHeader />

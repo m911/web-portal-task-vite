@@ -1,5 +1,9 @@
 <template>
-  <div class="container" v-if="!isAuthenticated" v-bind:="isAuthenticated">
+  <div
+    class="container"
+    v-if="!datastore.isAuthenticated"
+    v-bind:="datastore.isAuthenticated"
+  >
     <input required type="text" v-model="username" />
     <input required type="password" v-model="password" />
     <button class="btn btn-primary" @click="login">Login</button>
@@ -17,7 +21,7 @@ import { authService } from "@/services/authService";
 import { taskService } from "@/services/taskService";
 import { useDataStore } from "@/stores/data";
 
-let { isAuthenticated } = useDataStore();
+let datastore = useDataStore();
 const router = useRouter();
 // let username: string;
 // let password: string;
@@ -25,7 +29,7 @@ let username = "365";
 let password = "1";
 
 // onBeforeMount(() => {
-//   isAuthenticated ? (isAuthenticated = false) : isAuthenticated;
+//   datastore.isAuthenticated ? (datastore.isAuthenticated = false) : datastore.isAuthenticated;
 // });
 
 function login(): void {
@@ -34,7 +38,7 @@ function login(): void {
     password: password,
   };
   (async () => {
-    (await authService.login(credentials)) && (await taskService.getTasks())
+    (await authService.login(credentials))
       ? router.replace("/data")
       : alert(
           "Authentication failed. Please check username and password and try again."

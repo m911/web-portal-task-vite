@@ -1,7 +1,6 @@
 import axios from "axios";
 import { cookies, COOKIE_PROPS } from "@/services/cookieService";
 import { useDataStore } from "@/stores/data";
-import { ref } from "vue";
 
 let localCredentials: object = {};
 export const authService = {
@@ -25,12 +24,13 @@ export const authService = {
         new Date(Date.now() + 1200 * 60 * 60)
       );
       localCredentials = credentials;
-      dataStore.isAuthenticated = ref(true);
+      dataStore.isAuthenticated = true;
       // dataStore.changeAuthorization();
       return true;
     } catch (error) {
       console.error(`Error ${error} ${error.message}`);
-      dataStore.isAuthenticated = ref(false);
+      const dataStore = useDataStore();
+      dataStore.isAuthenticated = false;
       // dataStore.changeAuthorization();
       return false;
     }
