@@ -30,6 +30,7 @@
           <button
             class="btn btn-success"
             v-if="dataStore.modalData.saveButtonOn"
+            :on-click="dataStore.modalData.saveButtoCallBack"
           >
             Save changes
           </button>

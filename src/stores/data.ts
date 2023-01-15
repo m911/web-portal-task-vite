@@ -13,7 +13,8 @@ export const useDataStore = defineStore({
     modalData: {
       title: "",
       data: "",
-      saveButtonOn: false,
+      saveButtonOn: true,
+      saveButtoCallBack: Function,
     },
     filteredData: [] as object[],
     query: "",
