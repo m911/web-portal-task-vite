@@ -10,7 +10,13 @@
   </div>
   <div v-else>
     <h3>Go to data page</h3>
-    <button class="btn btn-primary" @click="dataRedirect">Load Data</button>
+    <button
+      class="btn btn-primary"
+      :disabled="datastore.isLoading"
+      @click="dataRedirect"
+    >
+      Load Data
+    </button>
   </div>
 </template>
 
@@ -36,7 +42,7 @@ function login(): void {
   (async () => {
     if (await authService.login(credentials)) {
       await taskService.getTasks();
-      router.replace("/loginSucess");
+      // setTimeout(() => router.replace("/data"), 3000);
     } else {
       alert("Login failed. Please check username and password and try again.");
     }
