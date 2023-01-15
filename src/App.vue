@@ -5,10 +5,7 @@ import LayoutComponent from "@/components/LayoutComponent.vue";
 import { useDataStore } from "@/stores/data";
 
 onDeactivated((): void => {
-  localStorage.setItem(
-    "localData",
-    JSON.stringify({ useDataStore }().localData)
-  );
+  sessionStorage.setItem("localData", JSON.stringify(useDataStore().localData));
 });
 </script>
 

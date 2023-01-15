@@ -21,7 +21,7 @@ export const authService = {
       cookies.set(
         COOKIE_PROPS.ACCESS_TOKEN,
         access_token,
-        new Date(Date.now() + 1200 * 60 * 60)
+        new Date(Date.now() + 1000 * 60 * 60)
       );
       localCredentials = credentials;
       dataStore.isAuthenticated = true;

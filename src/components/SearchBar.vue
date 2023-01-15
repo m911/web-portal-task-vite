@@ -36,9 +36,6 @@ const showdata = () => {
       placeholder="Type something to search"
       v-model="dataStore.query"
     />
-    <p>
-      {{ dataStore.isAuthenticated }}
-    </p>
   </div>
 </template>
 

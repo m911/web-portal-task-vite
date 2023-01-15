@@ -1,12 +1,12 @@
 import axios from "axios";
 import { cookies, COOKIE_PROPS } from "./cookieService";
 import { useDataStore } from "@/stores/data";
-import { useRouter } from "vue-router";
 
 export const taskService = {
   getTasks() {
     const dataStore = useDataStore();
     if (!cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN)) {
+      dataStore.isAuthenticated = false;
       return;
     } else {
       (async function getPromise(): Promise<void> {
@@ -22,13 +22,9 @@ export const taskService = {
             headers,
           });
           dataStore.localData = response.data;
-          localStorage.setItem("localData", JSON.stringify(response.data));
-          console.log(Array.isArray(dataStore.localData));
-          console.log(dataStore.localData);
+          sessionStorage.setItem("localData", JSON.stringify(response.data));
         } catch (error: any) {
-          console.error(error);
-          // error.message<string>.includes("";
-          useRouter().replace("/login");
+          console.error(`${error} ${error.message}`);
         }
       })();
     }

@@ -18,8 +18,7 @@ const changeArray = () => {
     v-bind="datastore.isAuthenticated"
     class="container"
   >
-    <button :onclick="taskService.getTasks">Get data</button>
-    <button :onclick="changeArray">Change Array</button>
+    <button :onclick="taskService.getTasks">Load data</button>
     <SearchBar />
     <table class="table table-bordered border-primary">
       <TableHeader />
