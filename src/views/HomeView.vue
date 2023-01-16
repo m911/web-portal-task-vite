@@ -5,7 +5,6 @@ import TheWelcome from "../components/HelloWorld.vue";
 <template>
   <main>
     <TheWelcome />
-    <ModalWindow />
     <button
       type="button"
       data-bs-toggle="modal"

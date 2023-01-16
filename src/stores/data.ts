@@ -32,7 +32,7 @@ export const useDataStore = defineStore({
   },
   getters: {
     showFilter: (state) => {
-      return state.filteredData.lenght > 0
+      return state.filteredData.length > 0
         ? state.filteredData
         : state.localData;
     },
@@ -47,3 +47,5 @@ export const useDataStore = defineStore({
 //   },
 //   { deep: true }
 // );
+
+// e
