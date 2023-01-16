@@ -4,11 +4,15 @@
     v-if="!datastore.isAuthenticated"
     v-bind:="datastore.isAuthenticated"
   >
-    <input required type="text" v-model="username" />
-    <input required type="password" v-model="password" />
+    <input required type="text" v-model="datastore.loginCredentials.username" />
+    <input
+      required
+      type="password"
+      v-model="datastore.loginCredentials.password"
+    />
     <button class="btn btn-primary" @click="login">Login</button>
   </div>
-  <div v-else>
+  <div v-else-if="!useDataStore().isLoading">
     <h3>Successfully logged in. Go to data page</h3>
     <button
       class="btn btn-primary"
@@ -21,7 +25,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { authService } from "@/services/authService";
 import { taskService } from "@/services/taskService";
@@ -29,21 +32,13 @@ import { useDataStore } from "@/stores/data";
 
 let datastore = useDataStore();
 const router = useRouter();
-// let username: string;
-// let password: string;
-let username = "365";
-let password = "1";
 
 function login(): void {
-  const credentials: object = {
-    username: username,
-    password: password,
-  };
   (async () => {
-    if (await authService.login(credentials)) {
+    if (await authService.login()) {
+      useDataStore().isLoading = true;
       await taskService.getTasks();
-      router.isReady();
-      // setTimeout(() => router.replace("/data"), 3000);
+      useDataStore().isLoading = false;
     } else {
       alert("Login failed. Please check username and password and try again.");
     }

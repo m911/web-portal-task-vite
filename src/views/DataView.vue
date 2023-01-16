@@ -4,6 +4,7 @@ import TableHeader from "@/components/TableHeader.vue";
 import TableBody from "@/components/TableBody.vue";
 import { useDataStore } from "@/stores/data";
 import { taskService } from "@/services/taskService";
+import { RouterLink } from "vue-router";
 
 let datastore = useDataStore();
 const changeArray = () => {
@@ -27,6 +28,9 @@ const changeArray = () => {
   </div>
   <div v-else>
     You have not permission to access this page. Please login again.
+    <a class="router-link-exact-active"
+      ><RouterLink to="/login">Login</RouterLink></a
+    >
   </div>
 </template>
 

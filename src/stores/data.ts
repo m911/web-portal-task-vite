@@ -15,7 +15,10 @@ export const useDataStore = defineStore({
     localData: [] as object[],
     filteredData: [] as object[],
     query: "",
-    localCredentials: {},
+    loginCredentials: {
+      username: "365",
+      password: "1",
+    },
   }),
   actions: {
     setLocalData(data: object[]) {
