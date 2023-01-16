@@ -19,6 +19,7 @@ import { defineComponent, ref } from "vue";
 import { authService } from "@/services/authService";
 import { taskService } from "@/services/taskService";
 import { cookies, COOKIE_PROPS } from "@/services/cookieService";
+import { useDataStore } from "@/stores/data";
 
 export default defineComponent({
   name: "PostList",

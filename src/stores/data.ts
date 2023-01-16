@@ -15,9 +15,15 @@ export const useDataStore = defineStore({
     localData: [] as object[],
     filteredData: [] as object[],
     query: "",
-    loginCredentials: {
-      username: "365",
-      password: "1",
+    getAccessToken: {
+      credentials: {
+        username: "365",
+        password: "1",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz",
+      },
     },
   }),
   actions: {
