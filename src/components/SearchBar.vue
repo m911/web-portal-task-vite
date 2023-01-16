@@ -9,13 +9,9 @@ const filterData = (event: any): void => {
     dataStore.filteredData = [];
     return;
   } else {
-    let newarray: object[] = dataStore.localData.filter((item) => {
+    dataStore.filteredData = dataStore.localData.filter((item) => {
       return JSON.stringify(item).toLowerCase().includes(query.toLowerCase());
     });
-    dataStore.filteredData = newarray;
-    console.clear();
-    console.table(newarray);
-    console.table(dataStore.filteredData);
   }
 };
 </script>

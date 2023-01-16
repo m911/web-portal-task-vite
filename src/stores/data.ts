@@ -32,9 +32,11 @@ export const useDataStore = defineStore({
   },
   getters: {
     showFilter: (state) => {
-      return state.filteredData.length > 0
-        ? state.filteredData
-        : state.localData;
+      if (state.filteredData.length > 0 || state.query.length > 0) {
+        return state.filteredData;
+      } else {
+        return state.localData;
+      }
     },
   },
 });

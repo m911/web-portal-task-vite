@@ -3,11 +3,11 @@
   <keep-alive>
     <tbody
       class="table-row"
-      v-for="task in dataStore.localData"
+      v-for="task in dataStore.showFilter"
       :key="task.task"
     >
       <tr>
-        <td>{{ tasknumber++ }}</td>
+        <!-- <td>{{ tasknumber++ }}</td> -->
         <td>{{ task.task }}</td>
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>

@@ -3,7 +3,7 @@
 <template>
   <thead>
     <tr>
-      <th>#</th>
+      <!-- <th>#</th> -->
       <th>Task</th>
       <th>Title</th>
       <th>Description</th>
