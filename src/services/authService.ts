@@ -8,6 +8,7 @@ export const authService = {
   // TASK_URL: "/dev/index.php/v1/tasks/select",
   // BASE_URL: "https://api.baubuddy.de/dev/index.php/v1/login",
   login: async function login(credentials: object): Promise<boolean> {
+    const dataStore = useDataStore();
     try {
       useDataStore.isLoading = true;
       const response = await axios.post(this.BASE_URL, credentials, {
