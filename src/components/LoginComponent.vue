@@ -9,7 +9,7 @@
     <button class="btn btn-primary" @click="login">Login</button>
   </div>
   <div v-else>
-    <h3>Go to data page</h3>
+    <h3>Successfully logged in. Go to data page</h3>
     <button
       class="btn btn-primary"
       :disabled="datastore.isLoading"
@@ -42,6 +42,7 @@ function login(): void {
   (async () => {
     if (await authService.login(credentials)) {
       await taskService.getTasks();
+      router.isReady();
       // setTimeout(() => router.replace("/data"), 3000);
     } else {
       alert("Login failed. Please check username and password and try again.");

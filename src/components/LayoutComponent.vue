@@ -10,7 +10,7 @@ const dataStore = useDataStore();
       <a class="router-link-exact-active">
         <RouterLink class="link" to="/">Home</RouterLink>
       </a>
-      <a class="router-link-exact-active">
+      <a class="router-link-exact-active" v-if="!dataStore.isAuthenticated">
         <RouterLink to="/login">Login</RouterLink>
       </a>
       <a class="router-link-exact-active" v-if="dataStore.isAuthenticated">

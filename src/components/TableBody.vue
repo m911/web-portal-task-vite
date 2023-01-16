@@ -12,7 +12,7 @@
     </tbody>
   </keep-alive>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" async>
 import { useDataStore } from "@/stores/data";
 import ColoredCell from "./ColoredCell.vue";
 import { onBeforeMount, onUnmounted } from "vue";
@@ -20,6 +20,13 @@ import { taskService } from "@/services/taskService";
 import LoadingComponent from "./LoadingComponent.jsx";
 // import Itask from "@/utils/ITask";
 // taskService.getTasks();
+onBeforeMount(() => {
+  (async () => {
+    useDataStore.isLoading = true;
+    await taskService.getTasks();
+    useDataStore.isLoading = false;
+  })();
+});
 
 let tasknumber = 0;
 let dataStore = useDataStore();
