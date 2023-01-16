@@ -1,51 +1,62 @@
 <template>
-  <div
-    class="container"
-    v-if="!datastore.isAuthenticated"
-    v-bind:="datastore.isAuthenticated"
-  >
-    <input required type="text" v-model="datastore.loginCredentials.username" />
-    <input
-      required
-      type="password"
-      v-model="datastore.loginCredentials.password"
-    />
-    <button class="btn btn-primary" @click="login">Login</button>
-  </div>
-  <div v-else-if="!useDataStore().isLoading">
-    <h3>Successfully logged in. Go to data page</h3>
-    <button
-      class="btn btn-primary"
-      :disabled="datastore.isLoading"
-      @click="dataRedirect"
-    >
-      Load Data
-    </button>
+  <div class="container">
+    <div class="container">
+      <!-- <form method="post" :on-submit="login"> -->
+      <input required type="text" v-model="username" />
+      <input required type="password" v-model="password" />
+      <!-- <button class="btn btn-primary" type="submit">Login</button> -->
+      <button class="btn btn-primary" @click="login">Login</button>
+      <!-- </form> -->
+    </div>
+    <div v-if="isAuthenticated">
+      <button class="btn btn-primary" @click="getData">Load Data</button>
+    </div>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { useRouter } from "vue-router";
+<script lang="ts">
+import { defineComponent, ref } from "vue";
 import { authService } from "@/services/authService";
 import { taskService } from "@/services/taskService";
-import { useDataStore } from "@/stores/data";
+import { cookies, COOKIE_PROPS } from "@/services/cookieService";
 
-let datastore = useDataStore();
-const router = useRouter();
-
-function login(): void {
-  (async () => {
-    if (await authService.login()) {
-      useDataStore().isLoading = true;
-      await taskService.getTasks();
-      useDataStore().isLoading = false;
-    } else {
-      alert("Login failed. Please check username and password and try again.");
-    }
-  })();
-}
-function dataRedirect() {
-  router.replace("/data");
-}
+export default defineComponent({
+  name: "PostList",
+  data: () => {
+    return {
+      isAuthenticated: false,
+      dataNumber: 0,
+      username: "365",
+      password: "1",
+      data: [] as object[],
+      modalActive: true,
+    };
+  },
+  setup(props, ctx) {
+    const modalActive = ref(true);
+    const hasAccessKey: boolean = cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN);
+  },
+  methods: {
+    login(): void {
+      const credentials: object = {
+        username: this.username,
+        password: this.password,
+      };
+      authService.login(credentials);
+      this.isAuthenticated = authService.isAuthenticated;
+      console.log(authService.isAuthenticated);
+    },
+    getData(): void {
+      taskService.getTasks().then((data) => {
+        this.data = data;
+      });
+    },
+  },
+  // components: {
+  //   ModalComponent,
+  // },
+  emits: ["toggleModal"],
+});
 </script>
+
 <style lang="scss"></style>
