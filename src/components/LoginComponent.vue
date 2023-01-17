@@ -45,7 +45,6 @@ export default defineComponent({
       };
       authService.login(credentials);
       this.isAuthenticated = authService.isAuthenticated;
-      console.log(authService.isAuthenticated);
     },
     getData(): void {
       taskService.getTasks().then((data) => {
