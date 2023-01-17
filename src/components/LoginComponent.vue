@@ -33,10 +33,6 @@ export default defineComponent({
       modalActive: true,
     };
   },
-  setup(props, ctx) {
-    const modalActive = ref(true);
-    const hasAccessKey: boolean = cookies.isKey(COOKIE_PROPS.ACCESS_TOKEN);
-  },
   methods: {
     login(): void {
       const credentials: object = {

@@ -58,7 +58,7 @@ export const useDataStore = defineStore({
   },
 });
 
-export default useDataStore(useDataStore);
+// export default useDataStore(useDataStore);
 
 // export default useDataStore(useDataStore);
 // watch(

@@ -10,7 +10,7 @@ export const authService = {
   login: async function login(credentials: object): Promise<boolean> {
     const { headers } = useDataStore().getAccessToken;
     try {
-      useDataStore.isLoading = true;
+      useDataStore().isLoading = true;
       const response = await axios.post(this.BASE_URL, credentials, {
         headers,
       });
