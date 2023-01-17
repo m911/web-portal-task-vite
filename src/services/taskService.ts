@@ -9,14 +9,17 @@ export default class TaskService {
     return (async (): Promise<any> => {
       try {
         const dataStore = useDataStore();
+        const oauth = dataStore.oauth;
+        const getAccessToken = dataStore.getAccessToken;
         useDataStore.isLoading = true;
         const BASE_URL = "/dev/index.php/v1/tasks/select";
-        const tokenType = cookies.get("token_type");
-        const accessToken = cookies.get("access_token");
+        const tokenType = oauth.token_type;
+        const accessToken = oauth.access_token;
         const headers = {
           Authorization: `${tokenType} ${accessToken}`,
-          "Content-Type": "application/json",
+          "Content-Type": getAccessToken.headers[0],
         };
+
         const response = await axios.get<object[]>(BASE_URL, { headers });
         dataStore.localData = response.data;
         sessionStorage.setItem("localData", JSON.stringify(response.data));

@@ -9,8 +9,17 @@ export const useDataStore = defineStore({
       access_token: "",
       expires_in: 1200,
       token_type: "Bearer",
-      scope: null,
       refresh_token: "",
+    },
+    getAccessToken: {
+      credentials: {
+        username: "365",
+        password: "1",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz",
+      },
     },
     isLoading: false,
     modalData: {
@@ -22,16 +31,6 @@ export const useDataStore = defineStore({
     localData: [] as object[],
     filteredData: [] as object[],
     query: "",
-    getAccessToken: {
-      credentials: {
-        username: "365",
-        password: "1",
-      },
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz",
-      },
-    },
   }),
   actions: {
     setLocalData(data: object[]) {
