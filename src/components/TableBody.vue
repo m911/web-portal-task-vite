@@ -23,15 +23,17 @@ import { onBeforeMount, computed } from "vue";
 import { taskService } from "@/services/taskService";
 import LoadingComponent from "./LoadingComponent.jsx";
 import { useRouter } from "vue-router";
+import { refreshLocalData } from "@/utils/refreshLocalData";
 
 const router = useRouter();
 const dataStore = useDataStore();
 
 onBeforeMount(() => {
   (async () => {
-    useDataStore.isLoading = true;
+    dataStore.isLoading = true;
     await taskService.getTasks();
-    useDataStore.isLoading = false;
+    dataStore.isLoading = false;
+    refreshLocalData(3600000);
     await router.isReady();
   })();
 });
