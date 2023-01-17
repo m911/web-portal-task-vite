@@ -19,9 +19,8 @@
 <script setup lang="ts" async>
 import { useDataStore } from "@/stores/data";
 import ColoredCell from "./ColoredCell.vue";
-import { onBeforeMount, computed } from "vue";
+import { onBeforeMount } from "vue";
 import { taskService } from "@/services/taskService";
-import LoadingComponent from "./LoadingComponent.jsx";
 import { useRouter } from "vue-router";
 import { refreshLocalData } from "@/utils/refreshLocalData";
 
