@@ -5,6 +5,13 @@ export const useDataStore = defineStore({
   id: "data",
   state: () => ({
     isAuthenticated: false,
+    oauth: {
+      access_token: "",
+      expires_in: 1200,
+      token_type: "Bearer",
+      scope: null,
+      refresh_token: "",
+    },
     isLoading: false,
     modalData: {
       title: "",
@@ -51,6 +58,9 @@ export const useDataStore = defineStore({
   },
 });
 
+export default useDataStore(useDataStore);
+
+// export default useDataStore(useDataStore);
 // watch(
 //   useDataStore.state,
 //   (state) => {
