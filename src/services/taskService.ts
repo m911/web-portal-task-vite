@@ -19,12 +19,11 @@ export default class TaskService {
           Authorization: `${tokenType} ${accessToken}`,
           "Content-Type": getAccessToken.headers[0],
         };
-
         const response = await axios.get<object[]>(BASE_URL, { headers });
         dataStore.localData = response.data;
         sessionStorage.setItem("localData", JSON.stringify(response.data));
         useDataStore.isLoading = false;
-        return response.data;
+        return response;
       } catch (error: any) {
         console.error(`${error} ${error.message}`);
         return error.message;

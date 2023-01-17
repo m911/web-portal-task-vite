@@ -17,13 +17,13 @@ $fontsize: 16px;
   @include bgcolor;
   color: $textcolor;
   font-size: $fontsize;
-  height: 100vh;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
+  width: 100vw;
 }
 div {
   // align-items: center;

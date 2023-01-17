@@ -1,8 +1,14 @@
 import { useDataStore } from "@/stores/data";
-// const dataStore = useDataStore();
+import { taskService } from "@/services/taskService";
 
-export const refreshTokenTimeout = (delay: number) => {
-  setTimeout(() => {
-    // authService.login(localCredentials);
+export const refreshLocalData = (delay: number) => {
+  const dataStore = useDataStore();
+  setTimeout(async () => {
+    try {
+      const response = await taskService.getTasks();
+      dataStore.remoteData = response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }, delay);
 };

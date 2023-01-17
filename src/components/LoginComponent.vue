@@ -2,8 +2,8 @@
   <div class="container">
     <div class="container">
       <!-- <form method="post" :on-submit="login"> -->
-      <input required type="text" v-model="username" />
-      <input required type="password" v-model="password" />
+      <input required type="text" v-model="credentials.username" />
+      <input required type="password" v-model="credentials.password" />
       <!-- <button class="btn btn-primary" type="submit">Login</button> -->
       <button class="btn btn-primary" @click="login">Login</button>
       <!-- </form> -->
@@ -14,45 +14,22 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent, ref } from "vue";
 import { authService } from "@/services/authService";
 import { taskService } from "@/services/taskService";
 import { cookies, COOKIE_PROPS } from "@/services/cookieService";
 import { useDataStore } from "@/stores/data";
 
-export default defineComponent({
-  name: "PostList",
-  data: () => {
-    return {
-      isAuthenticated: false,
-      dataNumber: 0,
-      username: "365",
-      password: "1",
-      data: [] as object[],
-      modalActive: true,
-    };
-  },
-  methods: {
-    login(): void {
-      const credentials: object = {
-        username: this.username,
-        password: this.password,
-      };
-      authService.login(credentials);
-      this.isAuthenticated = authService.isAuthenticated;
-    },
-    getData(): void {
-      taskService.getTasks().then((data) => {
-        this.data = data;
-      });
-    },
-  },
-  // components: {
-  //   ModalComponent,
-  // },
-  emits: ["toggleModal"],
-});
+const dataStore = useDataStore();
+const credentials = dataStore.getAccessToken.credentials;
+const login = () => {
+  authService.login(credentials);
+};
+
+async function getData() {
+  taskService.getTasks().then((response) => {});
+}
 </script>
 
 <style lang="scss"></style>

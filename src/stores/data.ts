@@ -29,6 +29,7 @@ export const useDataStore = defineStore({
       optionalButton: {},
     },
     localData: [] as object[],
+    remoteData: [] as object[],
     filteredData: [] as object[],
     query: "",
   }),
