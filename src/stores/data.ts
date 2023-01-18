@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 export const useDataStore = defineStore({
   id: "data",
   state: () => ({
-    isAuthenticated: false,
+    isAuthenticated: true,
     oauth: {
       access_token: "",
       expires_in: 1200,
@@ -28,7 +28,8 @@ export const useDataStore = defineStore({
       saveButtonOn: true,
       optionalButton: {},
     },
-    localData: [] as object[],
+    // localData: [] as object[],
+    localData: JSON.parse(sessionStorage.getItem("localData")),
     remoteData: [] as object[],
     filteredData: [] as object[],
     query: "",
@@ -55,14 +56,14 @@ export const useDataStore = defineStore({
         return state.localData;
       }
     },
+    showState: (state) => {
+      return state;
+    },
   },
 });
 
-// export default useDataStore();
-
-// export default useDataStore(useDataStore);
 // watch(
-//   useDataStore.state,
+//   useDataStore().state,
 //   (state) => {
 //     // persist the whole state to the local storage whenever it changes
 //     localStorage.setItem("piniaState", JSON.stringify(state));

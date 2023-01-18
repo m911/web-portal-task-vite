@@ -5,6 +5,7 @@ import TableBody from "@/components/TableBody.vue";
 import { useDataStore } from "@/stores/data";
 import { taskService } from "@/services/taskService";
 import { RouterLink } from "vue-router";
+import TestButton from "@/components/TestButton.vue";
 
 let datastore = useDataStore();
 const changeArray = () => {
@@ -14,12 +15,15 @@ const changeArray = () => {
 </script>
 
 <template>
+  <TestButton />
   <div
     v-if="datastore.isAuthenticated"
     v-bind="datastore.isAuthenticated"
     class="container"
   >
-    <button :onclick="taskService.getTasks">Load data</button>
+    <button class="btn btn-primary" :onclick="taskService.getTasks">
+      Load data
+    </button>
     <SearchBar />
     <table class="table table-bordered border-primary">
       <TableHeader />
