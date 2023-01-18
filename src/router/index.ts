@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
-import LogoutView from "../views/LogoutView.vue";
+import LogOutView from "../views/LogOutView.vue";
 import DataView from "../views/DataView.vue";
 import LoginSuccess from "@/views/LoginSuccess.vue";
 
@@ -21,7 +21,7 @@ const router = createRouter({
     {
       path: "/logout",
       name: "logout",
-      component: LogoutView,
+      component: LogOutView,
     },
     {
       path: "/data",
