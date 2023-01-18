@@ -54,6 +54,7 @@ inputFile?.addEventListener("change", () => {
     previewDefaultText.style.display = "none";
     previewImage.style.display = "block";
     reader.addEventListener("load", () => {
+      console.log(this);
       previewImage?.setAttribute("src", file);
     });
   }
