@@ -20,11 +20,7 @@
         <!-- Modal body -->
         <div class="modal-body">
           <slot> </slot>
-          <input type="file" name="inputFile" id="inputFile" />
-          <div class="image-preview" id="imagePreviewContainer">
-            <img src="" alt="Image Preview" class="image-preview__image" />
-            <span class="image-preview__default-text">Image Preview</span>
-          </div>
+          <PreviewImage />
         </div>
 
         <!-- Modal footer -->
@@ -41,22 +37,5 @@
 
 <script lang="ts" setup>
 import { useDataStore } from "@/stores/data";
-import { read } from "@popperjs/core";
-const dataStore = useDataStore();
-const inputFile = document.getElementById("inputFile");
-const previewConatiner = document.getElementById("imagePreviewContainer");
-const previewImage = document.querySelector(".image-preview__image");
-const previewDefaultText = document.querySelector(".image-preview__default");
-inputFile?.addEventListener("change", () => {
-  const file = this.file[0];
-  if (file) {
-    const reader = new FileReader();
-    previewDefaultText.style.display = "none";
-    previewImage.style.display = "block";
-    reader.addEventListener("load", () => {
-      console.log(this);
-      previewImage?.setAttribute("src", file);
-    });
-  }
-});
+import PreviewImage from "./PreviewImage.vue";
 </script>

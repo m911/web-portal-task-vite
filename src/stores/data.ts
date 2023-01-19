@@ -33,6 +33,7 @@ export const useDataStore = defineStore({
     remoteData: [] as object[],
     filteredData: [] as object[],
     query: "",
+    modalImageURL: "",
   }),
   actions: {
     setLocalData(data: object[]) {
