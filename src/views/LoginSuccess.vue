@@ -11,7 +11,7 @@ const router = useRouter();
 const routerView = new RouterView();
 
 function dataRedirect() {
-  router.replace("/data");
+  router.push("/data");
 }
 
 // onBeforeMount(() => {

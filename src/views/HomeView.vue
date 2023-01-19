@@ -6,14 +6,6 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 <template>
   <main>
     <LoadingSpinner />
-    <button
-      type="button"
-      data-bs-toggle="modal"
-      class="btn btn-primary m-3"
-      data-bs-target="#exampleModal"
-    >
-      Open modal
-    </button>
     <TheWelcome />
   </main>
 </template>

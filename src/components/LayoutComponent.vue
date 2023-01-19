@@ -16,7 +16,9 @@ const dataStore = useDataStore();
       <a class="router-link-exact-active" v-if="dataStore.isAuthenticated">
         <RouterLink to="/data">Data</RouterLink>
       </a>
-      <RouterLink to="/logout">Logout</RouterLink>
+      <a class="router-link-exact-active" v-if="dataStore.isAuthenticated">
+        <RouterLink to="/logout">Logout</RouterLink>
+      </a>
     </nav>
     <img
       alt="Vue logo"

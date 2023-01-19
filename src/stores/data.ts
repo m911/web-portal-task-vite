@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 export const useDataStore = defineStore({
   id: "data",
   state: () => ({
-    isAuthenticated: true,
+    isAuthenticated: false,
     oauth: {
       access_token: "",
       expires_in: 1200,

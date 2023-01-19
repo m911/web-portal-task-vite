@@ -5,9 +5,7 @@
       <input required type="text" v-model="credentials.username" />
       <input required type="password" v-model="credentials.password" />
       <!-- <button class="btn btn-primary" type="submit">Login</button> -->
-      <button class="btn btn-primary" @click="authService.login(credentials)">
-        Login
-      </button>
+      <button class="btn btn-primary" @click="handleLogin">Login</button>
       <!-- </form> -->
     </div>
     <div v-if="dataStore.isAuthenticated">
@@ -26,8 +24,11 @@ import LoginSuccess from "@/components/LoginComponent.vue";
 
 const dataStore = useDataStore();
 const credentials = dataStore.getAccessToken.credentials;
-
-// useRouter().
+const router = useRouter();
+const handleLogin = () => {
+  authService.login(credentials);
+  router.push("/data");
+};
 </script>
 
 <style lang="scss"></style>
